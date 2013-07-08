@@ -9,6 +9,11 @@ void BaseWidget::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key())
     {
+        case Qt::Key_F2:
+        {
+            emit menuPressed();
+            break;
+        }
         case Qt::Key_F4:
         {
             emit downPressed();
@@ -20,11 +25,6 @@ void BaseWidget::keyPressEvent(QKeyEvent *event)
             break;
         }
         case Qt::Key_F6:
-        {
-            emit menuPressed();
-            break;
-        }
-        case Qt::Key_F7:
         {
             emit enterPressed();
             break;
