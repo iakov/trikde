@@ -13,6 +13,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        startWidget.cpp
+        startWidget.cpp \
+    baseWidget.cpp
 
-HEADERS  += startWidget.h
+HEADERS  += startWidget.h \
+    baseWidget.h

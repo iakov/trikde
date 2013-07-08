@@ -1,8 +1,9 @@
 #pragma once
 
+#include "baseWidget.h"
 #include <QWidget>
 
-class StartWidget : public QWidget
+class StartWidget : public BaseWidget
 {
     Q_OBJECT
     
