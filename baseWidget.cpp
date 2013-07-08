@@ -21,7 +21,7 @@ void BaseWidget::keyPressEvent(QKeyEvent *event)
         }
         case Qt::Key_F6:
         {
-            close();
+            emit menuPressed();
             break;
         }
         case Qt::Key_F7:

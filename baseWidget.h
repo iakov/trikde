@@ -17,4 +17,5 @@ signals:
     void upPressed();
     void downPressed();
     void enterPressed();
+    void menuPressed();
 };
