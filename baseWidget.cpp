@@ -1,4 +1,5 @@
 #include "baseWidget.h"
+#include <QKeyEvent>
 
 BaseWidget::BaseWidget(QWidget *parent) :
     QWidget(parent)
