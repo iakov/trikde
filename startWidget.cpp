@@ -1,6 +1,7 @@
 #include "startWidget.h"
 #include <QKeyEvent>
 #include <QCoreApplication>
+#include "fileManagerWidget.h"
 
 StartWidget::StartWidget(QWidget *parent)
     : BaseWidget(parent)
@@ -11,9 +12,7 @@ StartWidget::StartWidget(QWidget *parent)
     titleLabel->setText("TrikDE");
 
     menuItems = new QList<QStandardItem *>;
-    menuItems->append(new QStandardItem("Item 1"));
-    menuItems->append(new QStandardItem("Item 2"));
-    menuItems->append(new QStandardItem("Item 3"));
+    menuItems->append(new QStandardItem("File Manager"));
     menuItems->append(new QStandardItem("Exit"));
 
 
@@ -56,6 +55,12 @@ void StartWidget::moveDown()
 void StartWidget::launch()
 {
     const QString &currentItemText = menuModel->itemFromIndex(menuView->currentIndex())->text();
-    if (currentItemText == "Exit")
+    if (currentItemText == "File Manager")
+    {
+        //Not sure
+        FileManagerWidget *fileManagerWidget = new FileManagerWidget;
+        fileManagerWidget->show();
+    }
+    else if (currentItemText == "Exit")
         close();
 }

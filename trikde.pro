@@ -14,7 +14,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         startWidget.cpp \
-    baseWidget.cpp
+    baseWidget.cpp \
+    fileManagerWidget.cpp
 
 HEADERS  += startWidget.h \
-    baseWidget.h
+    baseWidget.h \
+    fileManagerWidget.h
