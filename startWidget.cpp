@@ -12,7 +12,7 @@ StartWidget::StartWidget(QWidget *parent)
     titleLabel->setText("TrikDE");
 
     menuItems = new QList<QStandardItem *>;
-    menuItems->append(new QStandardItem("File Manager"));
+    menuItems->append(new QStandardItem(FileManagerWidget::getTitle()));
     menuItems->append(new QStandardItem("Exit"));
 
     menuModel = new QStandardItemModel;
@@ -54,7 +54,7 @@ void StartWidget::moveDown()
 void StartWidget::launch()
 {
     const QString &currentItemText = menuModel->itemFromIndex(menuView->currentIndex())->text();
-    if (currentItemText == "File Manager")
+    if (currentItemText == FileManagerWidget::getTitle())
     {
         //Not sure
         FileManagerWidget *fileManagerWidget = new FileManagerWidget;

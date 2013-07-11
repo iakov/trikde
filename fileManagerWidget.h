@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QListView>
 #include <QFileSystemModel>
+#include <QString>
 
 class FileManagerWidget : public BaseWidget
 {
@@ -13,8 +14,10 @@ class FileManagerWidget : public BaseWidget
 public:
     explicit FileManagerWidget(QWidget *parent = 0);
     ~FileManagerWidget();
+    static const QString &getTitle();
     
 private:
+    QString *title;
     QVBoxLayout *layout;
     QLabel *currentPathLabel;
     QListView *fileSystemView;

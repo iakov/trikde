@@ -5,6 +5,8 @@
 FileManagerWidget::FileManagerWidget(QWidget *parent) :
     BaseWidget(parent)
 {
+    title = new QString("File Manager");
+
     setWindowState(Qt::WindowFullScreen);
 
     currentPathLabel = new QLabel;
@@ -34,6 +36,12 @@ FileManagerWidget::~FileManagerWidget()
     delete layout;
     delete fileSystemView;
     delete currentPathLabel;
+    delete title;
+}
+
+const QString &FileManagerWidget::getTitle()
+{
+    return *title;
 }
 
 void FileManagerWidget::open()
