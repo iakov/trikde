@@ -6,6 +6,7 @@
 ShowIPAddressWidget::ShowIPAddressWidget(QWidget *parent) :
     BaseWidget(parent)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     setWindowState(Qt::WindowFullScreen);
 
     addressLabel = new QLabel;

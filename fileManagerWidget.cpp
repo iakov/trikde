@@ -5,6 +5,7 @@
 FileManagerWidget::FileManagerWidget(QWidget *parent) :
     BaseWidget(parent)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     setWindowState(Qt::WindowFullScreen);
 
     currentPathLabel = new QLabel;
