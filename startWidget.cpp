@@ -6,6 +6,8 @@
 StartWidget::StartWidget(QWidget *parent)
     : BaseWidget(parent)
 {
+    exitItemTitle = new QString("Exit");
+
     setWindowState(Qt::WindowFullScreen);
 
     titleLabel = new QLabel;
@@ -13,7 +15,7 @@ StartWidget::StartWidget(QWidget *parent)
 
     menuItems = new QList<QStandardItem *>;
     menuItems->append(new QStandardItem(FileManagerWidget::getTitle()));
-    menuItems->append(new QStandardItem("Exit"));
+    menuItems->append(new QStandardItem(exitItemTitle));
 
     menuModel = new QStandardItemModel;
     menuModel->appendColumn(*menuItems);
@@ -60,6 +62,6 @@ void StartWidget::launch()
         FileManagerWidget *fileManagerWidget = new FileManagerWidget;
         fileManagerWidget->show();
     }
-    else if (currentItemText == "Exit")
+    else if (currentItemText == exitItemTitle)
         close();
 }

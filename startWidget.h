@@ -8,6 +8,7 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QList>
+#include <QString>
 
 class StartWidget : public BaseWidget
 {
@@ -18,6 +19,7 @@ public:
     ~StartWidget();
 
 private:
+    QString *exitItemTitle;
     QVBoxLayout *layout;
     QLabel *titleLabel;
     QListView *menuView;
