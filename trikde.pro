@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,8 +15,10 @@ TEMPLATE = app
 SOURCES += main.cpp\
         startWidget.cpp \
     baseWidget.cpp \
-    fileManagerWidget.cpp
+    fileManagerWidget.cpp \
+    showIPAddressWidget.cpp
 
 HEADERS  += startWidget.h \
     baseWidget.h \
-    fileManagerWidget.h
+    fileManagerWidget.h \
+    showIPAddressWidget.h

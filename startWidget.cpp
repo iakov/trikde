@@ -2,6 +2,7 @@
 #include <QKeyEvent>
 #include <QCoreApplication>
 #include "fileManagerWidget.h"
+#include "showIPAddressWidget.h"
 
 StartWidget::StartWidget(QWidget *parent)
     : BaseWidget(parent)
@@ -15,6 +16,7 @@ StartWidget::StartWidget(QWidget *parent)
 
     menuItems = new QList<QStandardItem *>;
     menuItems->append(new QStandardItem(FileManagerWidget::getTitle()));
+    menuItems->append(new QStandardItem(ShowIPAddressWidget::getTitle()));
     menuItems->append(new QStandardItem(*exitItemTitle));
 
     menuModel = new QStandardItemModel;
@@ -61,6 +63,11 @@ void StartWidget::launch()
         //Not sure
         FileManagerWidget *fileManagerWidget = new FileManagerWidget;
         fileManagerWidget->show();
+    }
+    else if (currentItemText == ShowIPAddressWidget::getTitle())
+    {
+        ShowIPAddressWidget *showIPAddressWidget = new ShowIPAddressWidget;
+        showIPAddressWidget->show();
     }
     else if (currentItemText == exitItemTitle)
         close();
