@@ -16,11 +16,11 @@ public:
     
 private:
     QVBoxLayout *layout;
-    QLabel *pathLabel;
-    QListView *fileList;
+    QLabel *currentPathLabel;
+    QListView *fileSystemView;
     QFileSystemModel *fileSystemModel;
 
-    void printFileList();
+    void showCurrentDir();
 
 private slots:
     void open();

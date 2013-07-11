@@ -15,7 +15,6 @@ StartWidget::StartWidget(QWidget *parent)
     menuItems->append(new QStandardItem("File Manager"));
     menuItems->append(new QStandardItem("Exit"));
 
-
     menuModel = new QStandardItemModel;
     menuModel->appendColumn(*menuItems);
 

@@ -7,54 +7,57 @@ FileManagerWidget::FileManagerWidget(QWidget *parent) :
 {
     setWindowState(Qt::WindowFullScreen);
 
-    pathLabel = new QLabel;
-    fileList = new QListView;
-    layout = new QVBoxLayout;
-    layout->addWidget(pathLabel);
-    layout->addWidget(fileList);
-    setLayout(layout);
+    currentPathLabel = new QLabel;
+
     fileSystemModel = new QFileSystemModel;
     fileSystemModel->setRootPath("/");
     fileSystemModel->setFilter(QDir::AllEntries | QDir::System | QDir::NoDot);
-    fileList->setModel(fileSystemModel);
+
+    fileSystemView = new QListView;
+    fileSystemView->setModel(fileSystemModel);
+
+    layout = new QVBoxLayout;
+    layout->addWidget(currentPathLabel);
+    layout->addWidget(fileSystemView);
+    setLayout(layout);
 
     connect(this, SIGNAL(upPressed()), this, SLOT(moveUp()));
     connect(this, SIGNAL(downPressed()), this, SLOT(moveDown()));
     connect(this, SIGNAL(enterPressed()), this, SLOT(open()));
     connect(this, SIGNAL(menuPressed()), this, SLOT(close()));
 
-    printFileList();
+    showCurrentDir();
 }
 
 FileManagerWidget::~FileManagerWidget()
 {
     delete layout;
-    delete fileList;
-    delete pathLabel;
+    delete fileSystemView;
+    delete currentPathLabel;
 }
 
 void FileManagerWidget::open()
 {
-     const QModelIndex &index = fileList->currentIndex();
+     const QModelIndex &index = fileSystemView->currentIndex();
      if (fileSystemModel->isDir(index))
      {
          QDir::setCurrent(fileSystemModel->filePath(index));
-         printFileList();
+         showCurrentDir();
      }
 }
 
 void FileManagerWidget::moveUp()
 {
-    QCoreApplication::postEvent(fileList, new QKeyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier));
+    QCoreApplication::postEvent(fileSystemView, new QKeyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier));
 }
 
 void FileManagerWidget::moveDown()
 {
-    QCoreApplication::postEvent(fileList, new QKeyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier));
+    QCoreApplication::postEvent(fileSystemView, new QKeyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier));
 }
 
-void FileManagerWidget::printFileList()
+void FileManagerWidget::showCurrentDir()
 {
-    pathLabel->setText(QDir::currentPath());
-    fileList->setRootIndex(fileSystemModel->index(QDir::currentPath()));
+    currentPathLabel->setText(QDir::currentPath());
+    fileSystemView->setRootIndex(fileSystemModel->index(QDir::currentPath()));
 }
