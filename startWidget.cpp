@@ -61,7 +61,6 @@ void StartWidget::launch()
     const QString &currentItemText = menuModel->itemFromIndex(menuView->currentIndex())->text();
     if (currentItemText == FileManagerWidget::getTitle())
     {
-        //Not sure
         FileManagerWidget *fileManagerWidget = new FileManagerWidget;
         fileManagerWidget->show();
     }
