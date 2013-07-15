@@ -1,6 +1,7 @@
 #include "fileManagerWidget.h"
 #include <QCoreApplication>
 #include <QKeyEvent>
+#include <QProcess>
 
 FileManagerWidget::FileManagerWidget(QWidget *parent) :
     BaseWidget(parent)
@@ -50,6 +51,8 @@ void FileManagerWidget::open()
          QDir::setCurrent(fileSystemModel->filePath(index));
          showCurrentDir();
      }
+     else
+         QProcess::execute(fileSystemModel->filePath(index));
 }
 
 void FileManagerWidget::moveUp()

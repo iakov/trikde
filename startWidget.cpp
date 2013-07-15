@@ -43,6 +43,7 @@ StartWidget::~StartWidget()
     delete menuModel;
     delete menuItems;
     delete titleLabel;
+    delete exitItemTitle;
 }
 
 void StartWidget::moveUp()
