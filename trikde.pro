@@ -16,9 +16,11 @@ SOURCES += main.cpp\
         startWidget.cpp \
     baseWidget.cpp \
     fileManagerWidget.cpp \
-    showIPAddressWidget.cpp
+    showIPAddressWidget.cpp \
+    showNetConfigWidget.cpp
 
 HEADERS  += startWidget.h \
     baseWidget.h \
     fileManagerWidget.h \
-    showIPAddressWidget.h
+    showIPAddressWidget.h \
+    showNetConfigWidget.h

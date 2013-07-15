@@ -2,6 +2,7 @@
 #include <QKeyEvent>
 #include <QCoreApplication>
 #include "fileManagerWidget.h"
+#include "showNetConfigWidget.h"
 #include "showIPAddressWidget.h"
 
 StartWidget::StartWidget(QWidget *parent)
@@ -16,6 +17,7 @@ StartWidget::StartWidget(QWidget *parent)
 
     menuItems = new QList<QStandardItem *>;
     menuItems->append(new QStandardItem(FileManagerWidget::getTitle()));
+    menuItems->append(new QStandardItem(ShowNetConfigWidget::getTitle()));
     menuItems->append(new QStandardItem(ShowIPAddressWidget::getTitle()));
     menuItems->append(new QStandardItem(*exitItemTitle));
 
@@ -63,6 +65,11 @@ void StartWidget::launch()
     {
         FileManagerWidget *fileManagerWidget = new FileManagerWidget;
         fileManagerWidget->show();
+    }
+    else if (currentItemText == ShowNetConfigWidget::getTitle())
+    {
+        ShowNetConfigWidget *showNetConfigWidget = new ShowNetConfigWidget;
+        showNetConfigWidget->show();
     }
     else if (currentItemText == ShowIPAddressWidget::getTitle())
     {
