@@ -6,7 +6,7 @@
 #include "showIPAddressWidget.h"
 
 StartWidget::StartWidget(QWidget *parent)
-    : BaseWidget(parent)
+    : QWidget(parent)
 {
     exitItemTitle = new QString("Exit");
 
@@ -32,10 +32,6 @@ StartWidget::StartWidget(QWidget *parent)
     layout->addWidget(menuView);
 
     setLayout(layout);
-
-    connect(this, SIGNAL(upPressed()), this, SLOT(moveUp()));
-    connect(this, SIGNAL(downPressed()), this, SLOT(moveDown()));
-    connect(this, SIGNAL(enterPressed()), this, SLOT(launch()));
 }
 
 StartWidget::~StartWidget()
@@ -46,16 +42,6 @@ StartWidget::~StartWidget()
     delete menuItems;
     delete titleLabel;
     delete exitItemTitle;
-}
-
-void StartWidget::moveUp()
-{
-    QCoreApplication::postEvent(menuView, new QKeyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier));
-}
-
-void StartWidget::moveDown()
-{
-    QCoreApplication::postEvent(menuView, new QKeyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier));
 }
 
 void StartWidget::launch()
@@ -78,4 +64,25 @@ void StartWidget::launch()
     }
     else if (currentItemText == exitItemTitle)
         close();
+}
+
+void StartWidget::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key())
+    {
+        case Qt::Key_Meta:
+        {
+            break;
+        }
+        case Qt::Key_Enter:
+        {
+            launch();
+            break;
+        }
+        default:
+        {
+            QWidget::keyPressEvent(event);
+            break;
+        }
+    }
 }

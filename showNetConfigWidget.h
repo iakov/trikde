@@ -5,7 +5,7 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 
-class ShowNetConfigWidget : public BaseWidget
+class ShowNetConfigWidget : public QWidget
 {
     Q_OBJECT
 
@@ -20,7 +20,6 @@ private:
     QVBoxLayout *layout;
     void showNetConfig();
     
-private slots:
-    void moveUp();
-    void moveDown();
+protected:
+    void keyPressEvent(QKeyEvent *event);
 };

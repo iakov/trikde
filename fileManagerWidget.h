@@ -7,7 +7,7 @@
 #include <QFileSystemModel>
 #include <QString>
 
-class FileManagerWidget : public BaseWidget
+class FileManagerWidget : public QWidget
 {
     Q_OBJECT
 
@@ -23,9 +23,8 @@ private:
     QFileSystemModel *fileSystemModel;
 
     void showCurrentDir();
-
-private slots:
     void open();
-    void moveUp();
-    void moveDown();
+
+protected:
+    void keyPressEvent(QKeyEvent *event);
 };

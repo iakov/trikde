@@ -5,7 +5,7 @@
 #include <QHBoxLayout>
 #include <QString>
 
-class ShowIPAddressWidget : public BaseWidget
+class ShowIPAddressWidget : public QWidget
 {
     Q_OBJECT
 
@@ -18,4 +18,7 @@ private:
     QLabel *addressLabel;
     QHBoxLayout *layout;
     QString getAddress();
+
+protected:
+    void keyPressEvent(QKeyEvent *event);
 };

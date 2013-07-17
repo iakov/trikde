@@ -14,13 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         startWidget.cpp \
-    baseWidget.cpp \
     fileManagerWidget.cpp \
     showIPAddressWidget.cpp \
-    showNetConfigWidget.cpp
+    showNetConfigWidget.cpp \
+    trikDEApplication.cpp
 
 HEADERS  += startWidget.h \
-    baseWidget.h \
     fileManagerWidget.h \
     showIPAddressWidget.h \
-    showNetConfigWidget.h
+    showNetConfigWidget.h \
+    trikDEApplication.h

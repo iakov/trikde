@@ -4,7 +4,7 @@
 #include <QProcess>
 
 FileManagerWidget::FileManagerWidget(QWidget *parent) :
-    BaseWidget(parent)
+    QWidget(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowState(Qt::WindowFullScreen);
@@ -22,11 +22,6 @@ FileManagerWidget::FileManagerWidget(QWidget *parent) :
     layout->addWidget(currentPathLabel);
     layout->addWidget(fileSystemView);
     setLayout(layout);
-
-    connect(this, SIGNAL(upPressed()), this, SLOT(moveUp()));
-    connect(this, SIGNAL(downPressed()), this, SLOT(moveDown()));
-    connect(this, SIGNAL(enterPressed()), this, SLOT(open()));
-    connect(this, SIGNAL(menuPressed()), this, SLOT(close()));
 
     showCurrentDir();
 }
@@ -55,14 +50,26 @@ void FileManagerWidget::open()
          QProcess::execute(fileSystemModel->filePath(index));
 }
 
-void FileManagerWidget::moveUp()
+void FileManagerWidget::keyPressEvent(QKeyEvent *event)
 {
-    QCoreApplication::postEvent(fileSystemView, new QKeyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier));
-}
-
-void FileManagerWidget::moveDown()
-{
-    QCoreApplication::postEvent(fileSystemView, new QKeyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier));
+    switch (event->key())
+    {
+        case Qt::Key_Meta:
+        {
+            close();
+            break;
+        }
+        case Qt::Key_Enter:
+        {
+            open();
+            break;
+        }
+        default:
+        {
+            QWidget::keyPressEvent(event);
+            break;
+        }
+    }
 }
 
 void FileManagerWidget::showCurrentDir()

@@ -1,9 +1,9 @@
 #include "startWidget.h"
-#include <QApplication>
+#include "trikDEApplication.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    TrikDEApplication a(argc, argv);
     StartWidget w;
     w.show();
     

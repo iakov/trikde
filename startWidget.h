@@ -10,7 +10,7 @@
 #include <QList>
 #include <QString>
 
-class StartWidget : public BaseWidget
+class StartWidget : public QWidget
 {
     Q_OBJECT
     
@@ -26,8 +26,8 @@ private:
     QStandardItemModel *menuModel;
     QList<QStandardItem *> *menuItems;
 
-private slots:
-    void moveUp();
-    void moveDown();
     void launch();
+
+protected:
+    void keyPressEvent(QKeyEvent *event);
 };

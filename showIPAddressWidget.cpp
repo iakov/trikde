@@ -2,9 +2,10 @@
 #include <QtNetwork/QNetworkInterface>
 #include <QtNetwork/QHostAddress>
 #include <QtNetwork/QAbstractSocket>
+#include <QKeyEvent>
 
 ShowIPAddressWidget::ShowIPAddressWidget(QWidget *parent) :
-    BaseWidget(parent)
+    QWidget(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowState(Qt::WindowFullScreen);
@@ -16,9 +17,6 @@ ShowIPAddressWidget::ShowIPAddressWidget(QWidget *parent) :
     layout = new QHBoxLayout;
     layout->addWidget(addressLabel);
     setLayout(layout);
-
-    connect(this, SIGNAL(menuPressed()), this, SLOT(close()));
-    connect(this, SIGNAL(enterPressed()), this, SLOT(close()));
 }
 
 ShowIPAddressWidget::~ShowIPAddressWidget()
@@ -45,4 +43,21 @@ QString ShowIPAddressWidget::getAddress()
         }
     }
     return addressString;
+}
+
+void ShowIPAddressWidget::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key())
+    {
+        case Qt::Key_Meta: case Qt::Key_Enter:
+        {
+            close();
+            break;
+        }
+        default:
+        {
+            QWidget::keyPressEvent(event);
+            break;
+        }
+    }
 }

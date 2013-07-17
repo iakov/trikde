@@ -7,7 +7,7 @@
 #include <QKeyEvent>
 
 ShowNetConfigWidget::ShowNetConfigWidget(QWidget *parent) :
-    BaseWidget(parent)
+    QWidget(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowState(Qt::WindowFullScreen);
@@ -22,11 +22,6 @@ ShowNetConfigWidget::ShowNetConfigWidget(QWidget *parent) :
     layout->addWidget(titleLabel);
     layout->addWidget(netConfigTextEdit);
     setLayout(layout);
-
-    connect(this, SIGNAL(upPressed()), this, SLOT(moveUp()));
-    connect(this, SIGNAL(downPressed()), this, SLOT(moveDown()));
-    connect(this, SIGNAL(menuPressed()), this, SLOT(close()));
-    connect(this, SIGNAL(enterPressed()), this, SLOT(close()));
 
     showNetConfig();
 }
@@ -61,12 +56,19 @@ void ShowNetConfigWidget::showNetConfig()
     }
 }
 
-void ShowNetConfigWidget::moveUp()
+void ShowNetConfigWidget::keyPressEvent(QKeyEvent *event)
 {
-    QCoreApplication::postEvent(netConfigTextEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier));
-}
-
-void ShowNetConfigWidget::moveDown()
-{
-    QCoreApplication::postEvent(netConfigTextEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier));
+    switch (event->key())
+    {
+        case Qt::Key_Meta: case Qt::Key_Enter:
+        {
+            close();
+            break;
+        }
+        default:
+        {
+            QWidget::keyPressEvent(event);
+            break;
+        }
+    }
 }
