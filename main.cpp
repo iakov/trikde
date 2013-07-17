@@ -1,5 +1,5 @@
-#include "startWidget.h"
 #include "trikDEApplication.h"
+#include "startWidget.h"
 
 int main(int argc, char *argv[])
 {

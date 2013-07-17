@@ -1,9 +1,12 @@
 #pragma once
 
-#include "baseWidget.h"
 #include <QLabel>
 #include <QTextEdit>
 #include <QVBoxLayout>
+#include <QList>
+#include <QStandardItem>
+#include <QStandardItemModel>
+#include <QListView>
 
 class ShowNetConfigWidget : public QWidget
 {
@@ -16,7 +19,9 @@ public:
 
 private:
     QLabel *titleLabel;
-    QTextEdit *netConfigTextEdit;
+    QListView *configView;
+    QList<QStandardItem *> *configItems;
+    QStandardItemModel *configModel;
     QVBoxLayout *layout;
     void showNetConfig();
     

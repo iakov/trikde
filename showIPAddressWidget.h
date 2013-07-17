@@ -1,6 +1,5 @@
 #pragma once
 
-#include "baseWidget.h"
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QString>
