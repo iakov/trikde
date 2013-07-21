@@ -18,12 +18,12 @@ public:
     ~StartWidget();
 
 private:
-    QString *exitItemTitle;
-    QVBoxLayout *layout;
-    QLabel *titleLabel;
-    QListView *menuView;
-    QStandardItemModel *menuModel;
-    QList<QStandardItem *> *menuItems;
+    QString exitItemTitle;
+    QVBoxLayout layout;
+    QLabel titleLabel;
+    QListView menuView;
+    QStandardItemModel menuModel;
+    QList<QStandardItem *> menuItems;
 
     void launch();
 

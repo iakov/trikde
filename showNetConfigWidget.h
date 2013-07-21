@@ -18,11 +18,11 @@ public:
     static QString getTitle();
 
 private:
-    QLabel *titleLabel;
-    QListView *configView;
-    QList<QStandardItem *> *configItems;
-    QStandardItemModel *configModel;
-    QVBoxLayout *layout;
+    QLabel titleLabel;
+    QListView configView;
+    QList<QStandardItem *> configItems;
+    QStandardItemModel configModel;
+    QVBoxLayout layout;
     void showNetConfig();
     
 protected:

@@ -10,19 +10,15 @@ ShowIPAddressWidget::ShowIPAddressWidget(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowState(Qt::WindowFullScreen);
 
-    addressLabel = new QLabel;
-    addressLabel->setText(getAddress());
-    addressLabel->setAlignment(Qt::AlignCenter);
+    addressLabel.setText(getAddress());
+    addressLabel.setAlignment(Qt::AlignCenter);
 
-    layout = new QHBoxLayout;
-    layout->addWidget(addressLabel);
-    setLayout(layout);
+    layout.addWidget(&addressLabel);
+    setLayout(&layout);
 }
 
 ShowIPAddressWidget::~ShowIPAddressWidget()
 {
-    delete layout;
-    delete addressLabel;
 }
 
 QString ShowIPAddressWidget::getTitle()

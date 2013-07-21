@@ -16,10 +16,10 @@ public:
     static QString getTitle();
     
 private:
-    QVBoxLayout *layout;
-    QLabel *currentPathLabel;
-    QListView *fileSystemView;
-    QFileSystemModel *fileSystemModel;
+    QVBoxLayout layout;
+    QLabel currentPathLabel;
+    QListView fileSystemView;
+    QFileSystemModel fileSystemModel;
 
     void showCurrentDir();
     void open();

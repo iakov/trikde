@@ -14,8 +14,8 @@ public:
     static QString getTitle();
     
 private:
-    QLabel *addressLabel;
-    QHBoxLayout *layout;
+    QLabel addressLabel;
+    QHBoxLayout layout;
     QString getAddress();
 
 protected:

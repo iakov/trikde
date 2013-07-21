@@ -13,31 +13,21 @@ ShowNetConfigWidget::ShowNetConfigWidget(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowState(Qt::WindowFullScreen);
 
-    titleLabel = new QLabel;
-    titleLabel->setText("Network Configuration");
+    titleLabel.setText("Network Configuration");
 
-    configItems = new QList<QStandardItem *>;
-    configModel = new QStandardItemModel;
-    configView = new QListView;
     showNetConfig();
-    configModel->appendColumn(*configItems);
+    configModel.appendColumn(configItems);
 
-    configView->setModel(configModel);
+    configView.setModel(&configModel);
 
-    layout = new QVBoxLayout;
-    layout->addWidget(titleLabel);
-    layout->addWidget(configView);
-    setLayout(layout);
+    layout.addWidget(&titleLabel);
+    layout.addWidget(&configView);
+    setLayout(&layout);
 
 }
 
 ShowNetConfigWidget::~ShowNetConfigWidget()
 {
-    delete layout;
-    delete configItems;
-    delete configModel;
-    delete configView;
-    delete titleLabel;
 }
 
 QString ShowNetConfigWidget::getTitle()
@@ -49,17 +39,17 @@ void ShowNetConfigWidget::showNetConfig()
 {
     foreach (const QNetworkInterface &interface, QNetworkInterface::allInterfaces())
     {
-        configItems->append(new QStandardItem(interface.name()));
+        configItems.append(new QStandardItem(interface.name()));
         foreach (const QNetworkAddressEntry &entry, interface.addressEntries())
         {
             if (entry.ip().protocol() == QAbstractSocket::IPv4Protocol)
             {
-                configItems->append(new QStandardItem(QString("IP address: ") + entry.ip().toString()));
-                configItems->append(new QStandardItem(QString("Netmask: ") + entry.netmask().toString()));
+                configItems.append(new QStandardItem(QString("IP address: ") + entry.ip().toString()));
+                configItems.append(new QStandardItem(QString("Netmask: ") + entry.netmask().toString()));
             }
         }
-        configItems->append(new QStandardItem(QString("Hardware address: ") + interface.hardwareAddress()));
-        configItems->append(new QStandardItem(QString("\n")));
+        configItems.append(new QStandardItem(QString("Hardware address: ") + interface.hardwareAddress()));
+        configItems.append(new QStandardItem(QString("\n")));
     }
 }
 

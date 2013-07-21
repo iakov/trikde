@@ -9,28 +9,20 @@ FileManagerWidget::FileManagerWidget(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowState(Qt::WindowFullScreen);
 
-    currentPathLabel = new QLabel;
+    fileSystemModel.setRootPath("/");
+    fileSystemModel.setFilter(QDir::AllEntries | QDir::System | QDir::NoDot);
 
-    fileSystemModel = new QFileSystemModel;
-    fileSystemModel->setRootPath("/");
-    fileSystemModel->setFilter(QDir::AllEntries | QDir::System | QDir::NoDot);
+    fileSystemView.setModel(&fileSystemModel);
 
-    fileSystemView = new QListView;
-    fileSystemView->setModel(fileSystemModel);
-
-    layout = new QVBoxLayout;
-    layout->addWidget(currentPathLabel);
-    layout->addWidget(fileSystemView);
-    setLayout(layout);
+    layout.addWidget(&currentPathLabel);
+    layout.addWidget(&fileSystemView);
+    setLayout(&layout);
 
     showCurrentDir();
 }
 
 FileManagerWidget::~FileManagerWidget()
 {
-    delete layout;
-    delete fileSystemView;
-    delete currentPathLabel;
 }
 
 QString FileManagerWidget::getTitle()
@@ -40,14 +32,14 @@ QString FileManagerWidget::getTitle()
 
 void FileManagerWidget::open()
 {
-     const QModelIndex &index = fileSystemView->currentIndex();
-     if (fileSystemModel->isDir(index))
+     const QModelIndex &index = fileSystemView.currentIndex();
+     if (fileSystemModel.isDir(index))
      {
-         QDir::setCurrent(fileSystemModel->filePath(index));
+         QDir::setCurrent(fileSystemModel.filePath(index));
          showCurrentDir();
      }
      else
-         QProcess::execute(fileSystemModel->filePath(index));
+         QProcess::execute(fileSystemModel.filePath(index));
 }
 
 void FileManagerWidget::keyPressEvent(QKeyEvent *event)
@@ -74,6 +66,6 @@ void FileManagerWidget::keyPressEvent(QKeyEvent *event)
 
 void FileManagerWidget::showCurrentDir()
 {
-    currentPathLabel->setText(QDir::currentPath());
-    fileSystemView->setRootIndex(fileSystemModel->index(QDir::currentPath()));
+    currentPathLabel.setText(QDir::currentPath());
+    fileSystemView.setRootIndex(fileSystemModel.index(QDir::currentPath()));
 }
