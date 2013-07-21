@@ -15,7 +15,7 @@ ShowNetConfigWidget::ShowNetConfigWidget(QWidget *parent) :
 
     titleLabel.setText("Network Configuration");
 
-    showNetConfig();
+    generateNetConfigList();
     configModel.appendColumn(configItems);
 
     configView.setModel(&configModel);
@@ -23,7 +23,6 @@ ShowNetConfigWidget::ShowNetConfigWidget(QWidget *parent) :
     layout.addWidget(&titleLabel);
     layout.addWidget(&configView);
     setLayout(&layout);
-
 }
 
 ShowNetConfigWidget::~ShowNetConfigWidget()
@@ -35,7 +34,7 @@ QString ShowNetConfigWidget::getTitle()
     return QString("Show network configuration");
 }
 
-void ShowNetConfigWidget::showNetConfig()
+void ShowNetConfigWidget::generateNetConfigList()
 {
     foreach (const QNetworkInterface &interface, QNetworkInterface::allInterfaces())
     {
@@ -49,7 +48,7 @@ void ShowNetConfigWidget::showNetConfig()
             }
         }
         configItems.append(new QStandardItem(QString("Hardware address: ") + interface.hardwareAddress()));
-        configItems.append(new QStandardItem(QString("\n")));
+        configItems.append(new QStandardItem(QString()));
     }
 }
 

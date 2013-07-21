@@ -23,7 +23,7 @@ private:
     QList<QStandardItem *> configItems;
     QStandardItemModel configModel;
     QVBoxLayout layout;
-    void showNetConfig();
+    void generateNetConfigList();
     
 protected:
     void keyPressEvent(QKeyEvent *event);
