@@ -11,38 +11,40 @@ bool TrikDEApplication::notify(QObject *receiver, QEvent *event)
     if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = dynamic_cast<QKeyEvent *>(event);
-        switch (keyEvent->key())
-        {
-            case Qt::Key_F2:
+        if (keyEvent != NULL)
+            switch (keyEvent->key())
             {
-                return QApplication::notify(receiver, new QKeyEvent(QEvent::KeyPress, Qt::Key_Meta, Qt::NoModifier));
+                case Qt::Key_F2:
+                {
+                    *keyEvent = QKeyEvent(QEvent::KeyPress, Qt::Key_Meta, Qt::NoModifier);
+                    break;
+                }
+                case Qt::Key_F3:
+                {
+                    *keyEvent = QKeyEvent(QEvent::KeyPress, Qt::Key_Left, Qt::NoModifier);
+                    break;
+                }
+                case Qt::Key_F4:
+                {
+                    *keyEvent = QKeyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier);
+                    break;
+                }
+                case Qt::Key_F5:
+                {
+                    *keyEvent = QKeyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier);
+                    break;
+                }
+                case Qt::Key_F6:
+                {
+                    *keyEvent = QKeyEvent(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier);
+                    break;
+                }
+                case Qt::Key_F7:
+                {
+                    *keyEvent = QKeyEvent(QEvent::KeyPress, Qt::Key_Right, Qt::NoModifier);
+                    break;
+                }
             }
-            case Qt::Key_F3:
-            {
-                return QApplication::notify(receiver, new QKeyEvent(QEvent::KeyPress, Qt::Key_Left, Qt::NoModifier));
-            }
-            case Qt::Key_F4:
-            {
-                return QApplication::notify(receiver, new QKeyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier));
-            }
-            case Qt::Key_F5:
-            {
-                return QApplication::notify(receiver, new QKeyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier));
-            }
-            case Qt::Key_F6:
-            {
-                return QApplication::notify(receiver, new QKeyEvent(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier));
-            }
-            case Qt::Key_F7:
-            {
-                return QApplication::notify(receiver, new QKeyEvent(QEvent::KeyPress, Qt::Key_Right, Qt::NoModifier));
-            }
-            default:
-            {
-                return QApplication::notify(receiver, event);
-            }
-        }
     }
-    else
-        return QApplication::notify(receiver, event);
+    return QApplication::notify(receiver, event);
 }
