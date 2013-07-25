@@ -25,9 +25,10 @@ FileManagerWidget::~FileManagerWidget()
 {
 }
 
-QString FileManagerWidget::getTitle()
+const QString &FileManagerWidget::getTitle()
 {
-    return QString("File Manager");
+    static const QString title("File Manager");
+    return title;
 }
 
 void FileManagerWidget::open()

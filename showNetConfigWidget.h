@@ -15,7 +15,7 @@ class ShowNetConfigWidget : public QWidget
 public:
     explicit ShowNetConfigWidget(QWidget *parent = 0);
     ~ShowNetConfigWidget();
-    static QString getTitle();
+    static const QString &getTitle();
 
 private:
     QLabel titleLabel;

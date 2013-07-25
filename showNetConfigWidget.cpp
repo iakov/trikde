@@ -29,9 +29,10 @@ ShowNetConfigWidget::~ShowNetConfigWidget()
 {
 }
 
-QString ShowNetConfigWidget::getTitle()
+const QString &ShowNetConfigWidget::getTitle()
 {
-    return QString("Show network configuration");
+    static const QString title("Show network configuration");
+    return title;
 }
 
 void ShowNetConfigWidget::generateNetConfigList()

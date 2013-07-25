@@ -13,7 +13,7 @@ class FileManagerWidget : public QWidget
 public:
     explicit FileManagerWidget(QWidget *parent = 0);
     ~FileManagerWidget();
-    static QString getTitle();
+    static const QString &getTitle();
     
 private:
     QVBoxLayout layout;
