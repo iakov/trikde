@@ -44,11 +44,14 @@ void ShowNetConfigWidget::generateNetConfigList()
         {
             if (entry.ip().protocol() == QAbstractSocket::IPv4Protocol)
             {
-                configItems.append(new QStandardItem(QString("IP address: ") + entry.ip().toString()));
-                configItems.append(new QStandardItem(QString("Netmask: ") + entry.netmask().toString()));
+                configItems.append(new QStandardItem(QString("IP address: ")));
+                configItems.append(new QStandardItem(entry.ip().toString()));
+                configItems.append(new QStandardItem(QString("Netmask: ")));
+                configItems.append(new QStandardItem(entry.netmask().toString()));
             }
         }
-        configItems.append(new QStandardItem(QString("Hardware address: ") + interface.hardwareAddress()));
+        configItems.append(new QStandardItem(QString("Hardware address: ")));
+        configItems.append(new QStandardItem(interface.hardwareAddress()));
         configItems.append(new QStandardItem(QString()));
     }
 }
