@@ -39,7 +39,7 @@ void FileManagerWidget::open()
          showCurrentDir();
      }
      else
-         QProcess::execute(fileSystemModel.filePath(index));
+         QProcess::startDetached(fileSystemModel.filePath(index));
 }
 
 void FileManagerWidget::keyPressEvent(QKeyEvent *event)
